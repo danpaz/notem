@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o pipefail
+set -u
+set -e
+
+NOTE_DIR=~/notes
+
+function usage() {
+  echo "TODO show help here"
+  exit 3
+}
+
+if [ $# == 0 ]; then usage; fi
+
+case $1 in
+  --list|-l)
+    ls -A -1 $NOTE_DIR
+    ;;
+  --search|-s)
+    ls -A -1 $NOTE_DIR | grep ${@:2}
+    ;;
+  --open|-o)
+    note ${@:2}
+    ;;
+  *)
+    # prepend date, lowercase, dasherize
+    FILE="$(echo $(date +%Y-%m-%d) $@ | tr -s ' ' - | tr '[:upper:]' '[:lower:]')"
+    echo $FILE
+    touch $NOTE_DIR/$FILE
+    "${EDITOR:-vi}" $NOTE_DIR/$FILE
+    ;;
+esac
