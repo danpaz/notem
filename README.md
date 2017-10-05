@@ -25,6 +25,7 @@ $ notem --search goal-planning
 With Homebrew (recommended):
 
 ```sh
+$ brew tap danpaz/tap
 $ brew install notem
 ```
 
