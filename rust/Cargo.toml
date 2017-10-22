@@ -1,0 +1,9 @@
+[package]
+name = "notem"
+version = "0.1.0"
+authors = ["Daniel Paz-Soldan <daniel.pazsoldan@gmail.com>"]
+
+[dependencies]
+chrono = "0.4"
+open = "1.2"
+which = "1.0"
