@@ -6,6 +6,7 @@ use which::which;
 pub struct Config {
     pub editor: PathBuf,
     pub path: PathBuf,
+    pub filename: PathBuf,
 }
 
 impl Config {
@@ -13,13 +14,13 @@ impl Config {
         args.next();
 
         let editor = try!(choose_editor());
-        let mut path = try!(get_path());
+        let path = try!(get_path());
         let filename = get_filename(args.collect());
-        path.push(filename);
 
         Ok(Config {
           editor: editor,
           path: path,
+          filename: filename,
         })
     }
 }
