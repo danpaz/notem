@@ -3,5 +3,6 @@ extern crate which;
 
 pub mod config;
 pub mod list;
-// TODO: replace with open-rs crate, maybe.
+pub mod search;
+// TODO: replace with open-rs crate.
 pub mod open;

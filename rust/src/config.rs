@@ -10,9 +10,7 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(mut args: env::Args) -> Result<Config, &'static str> {
-        args.next();
-
+    pub fn new(args: env::Args) -> Result<Config, &'static str> {
         let editor = try!(choose_editor());
         let path = try!(get_path());
         let filename = get_filename(args.collect());

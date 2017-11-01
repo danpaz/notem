@@ -5,40 +5,47 @@ use std::process;
 use std::io::{stderr, Write};
 
 use notem::config::Config;
-use notem::list::list_notes;
-use notem::open;
+use notem::{open,list,search};
 
 fn usage() {
     println!("usage:
 notem <some subject>
     Start a new note with the given <some subject> in the file name.
 notem {{--list|-l}}
-    List all notes.");
+    List all notes.
+notem {{--search|-s}} <some subject>
+    Search notes by file name.");
 }
 
 fn main() {
     let mut args = env::args();
+    args.next();
     match env::args().skip(1).next() {
         Some(arg) => {
             match arg.as_str() {
                 "--list" | "-l" => {
                     let config = Config::new(args).unwrap();
-                    let path = config.path;
-                    if let Err(err) = list_notes(&path) {
-                        writeln!(stderr(), "An error occurred: {}", err).ok();
-                        process::exit(1);
-                    };
+                    list::list_notes(&config.path);
                 },
-                "--open" | "-o" | _ => {
+                "--search" | "-s" => {
+                    args.next();
+                    let rest = env::args().skip(2).collect();
+                    let config = Config::new(args).unwrap();
+                    search::search_notes(&config.path, rest);
+                },
+                "--open" | "-o" => {
                     args.next();
                     let config = Config::new(args).unwrap();
                     let Config { editor, mut path, filename } = config;
                     path.push(filename);
-                    if let Err(err) = open::that(editor, path) {
-                        writeln!(stderr(), "An error occurred: {}", err).ok();
-                        process::exit(1);
-                    };
+                    open::that(editor, path);
                 },
+                _ => {
+                    let config = Config::new(args).unwrap();
+                    let Config { editor, mut path, filename } = config;
+                    path.push(filename);
+                    open::that(editor, path);
+                }
             };
         },
         None => {
