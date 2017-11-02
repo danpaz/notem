@@ -4,6 +4,8 @@ description = "A simple note taking command line tool"
 version = "0.1.0"
 authors = ["Daniel Paz-Soldan <daniel.pazsoldan@gmail.com>"]
 license = "MIT"
+repository = "https://github.com/danpaz/notem"
+readme = "README.md"
 
 [dependencies]
 chrono = "0.4"
