@@ -2,7 +2,6 @@ extern crate chrono;
 extern crate which;
 
 pub mod config;
-pub mod list;
-pub mod search;
+pub mod dir;
 // TODO: replace with open-rs crate.
 pub mod open;

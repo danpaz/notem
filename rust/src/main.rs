@@ -2,10 +2,10 @@ extern crate notem;
 
 use std::env;
 use std::process;
-use std::io::{stderr, Write};
 
 use notem::config::Config;
-use notem::{open,list,search};
+use notem::open;
+use notem::dir;
 
 fn usage() {
     println!("usage:
@@ -25,13 +25,13 @@ fn main() {
             match arg.as_str() {
                 "--list" | "-l" => {
                     let config = Config::new(args).unwrap();
-                    list::list_notes(&config.path);
+                    dir::list_notes(&config.path);
                 },
                 "--search" | "-s" => {
                     args.next();
                     let rest = env::args().skip(2).collect();
                     let config = Config::new(args).unwrap();
-                    search::search_notes(&config.path, rest);
+                    dir::search_notes(&config.path, rest);
                 },
                 "--open" | "-o" => {
                     args.next();
