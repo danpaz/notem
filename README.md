@@ -1,12 +1,16 @@
 # notem
 
-Super simple note taking system. Stop adding text files to your Desktop. Start
-writing plain text notes with one command in the terminal:
+A super simple note taking system ✏️. Stop adding text files to your desktop,
+start writing plain text notes with one command in the terminal.
+
+## Usage
 
 ```sh
 $ notem goal planning
 # Opens ~/notes/2017-10-04-goal-planning in your default editor.
 ```
+
+Then your notes are sorted by date and easily searched using notem.
 
 List all notes:
 
@@ -14,10 +18,30 @@ List all notes:
 $ notem --list
 ```
 
-Search for a note by its title with grep:
+Search for a note by its title (like [grep](https://www.gnu.org/software/grep/manual/grep.html)):
 
 ```sh
-$ notem --search goal-planning
+$ notem --search goal planning
+```
+
+## Editor
+
+The default editor is determined first by the EDITOR environment variable, with
+several fallbacks to common text editors. To change this update your shell's
+EDITOR environment variable:
+
+```sh
+export EDITOR="/usr/bin/nano"
+```
+
+## Notes directory
+
+By default all notes are saved in a folder called `notes` in the home directory.
+To change this update the NOTEM_PATH environment variable:
+
+```sh
+# Use absolute path
+export NOTEM_PATH="/Users/computer-name/my-custom-path"
 ```
 
 ## Install
@@ -27,11 +51,4 @@ With Homebrew (recommended):
 ```sh
 $ brew tap danpaz/tap
 $ brew install notem
-```
-
-The default editor is `vi`. To change this update your shell's EDITOR
-environment variable:
-
-```sh
-export EDITOR="/usr/bin/nano"
 ```

@@ -8,13 +8,13 @@ use notem::open;
 use notem::dir;
 
 fn usage() {
-    println!("usage:
-notem <some subject>
-    Start a new note with the given <some subject> in the file name.
-notem {{--list|-l}}
-    List all notes.
-notem {{--search|-s}} <some subject>
-    Search notes by file name.");
+    println!("Usage:
+\tnotem <some subject>
+\t    Start a new note with the given <some subject> in the file name.
+\tnotem {{--list|-l}}
+\t    List all notes.
+\tnotem {{--search|-s}} <some subject>
+\t    Search notes by file name.");
 }
 
 fn main() {
