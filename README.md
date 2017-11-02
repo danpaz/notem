@@ -18,7 +18,7 @@ List all notes:
 $ notem --list
 ```
 
-Search for a note by its title (like [grep](https://www.gnu.org/software/grep/manual/grep.html)):
+Search for a note by its title (like [grep][]):
 
 ```sh
 $ notem --search goal planning
@@ -46,9 +46,11 @@ export NOTEM_PATH="/Users/computer-name/my-custom-path"
 
 ## Install
 
-With Homebrew (recommended):
+Notem is written in Rust, so use [Cargo][] to install:
 
 ```sh
-$ brew tap danpaz/tap
-$ brew install notem
+$ cargo install notem
 ```
+
+[grep]: https://www.gnu.org/software/grep/manual/grep.html
+[Cargo]: https://crates.io/
