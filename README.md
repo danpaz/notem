@@ -24,6 +24,8 @@ Search for a note by its title (like [grep][]):
 $ notem --search goal planning
 ```
 
+Use `notem --help` for a full list of commands.
+
 ## Editor
 
 The default editor is determined first by the EDITOR environment variable, with
