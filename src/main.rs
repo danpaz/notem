@@ -1,5 +1,3 @@
-extern crate notem;
-
 use std::env;
 use std::process;
 
