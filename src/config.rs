@@ -10,12 +10,12 @@ pub struct Config {
 }
 
 impl Config {
-    pub fn new(args: &[String]) -> Result<Config, String> {
+    pub fn new(args: &[String]) -> Result<Self, String> {
         let editor = choose_editor()?;
         let path = get_path()?;
         let filename = get_filename(args);
 
-        Ok(Config {
+        Ok(Self {
             editor,
             path,
             filename,
