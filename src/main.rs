@@ -19,7 +19,7 @@ fn usage() {
     );
 }
 
-fn run(args: Vec<String>) -> Result<(), String> {
+fn run(args: &[String]) -> Result<(), String> {
     let first = args[1].as_str();
     let rest = &args[2..];
     let config = Config::new(rest).unwrap();
@@ -65,6 +65,6 @@ fn main() {
         usage();
         process::exit(1);
     } else {
-        run(args).unwrap();
+        run(&args).unwrap();
     }
 }
