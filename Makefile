@@ -48,10 +48,6 @@ test-clippy:
 	@echo "Building $@"
 	CARGO_TARGET_DIR=$(CLIPPY_ARTIFACTS) $(CARGO) clippy --all-features --all-targets -- -W clippy::all -D warnings
 
-.PHONY: watch
-watch:
-	$(CARGO) watch -x check -x test
-
 .PHONY: rust-update
 rust-update:
 	@echo "Executing $@"

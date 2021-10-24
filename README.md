@@ -56,3 +56,18 @@ $ cargo install notem
 
 [grep]: https://www.gnu.org/software/grep/manual/grep.html
 [Cargo]: https://crates.io/
+
+
+# Developing
+
+First clone the project, and ensure you have [rustup](https://rustup.rs/) installed. Then run
+
+```sh
+make rust-update
+```
+
+To run linting and tests use
+
+```sh
+make test
+```
