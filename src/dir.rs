@@ -1,6 +1,6 @@
 use std::fs;
 use std::io;
-use std::path::PathBuf;
+use std::path::Path;
 
 fn search_term(args: &[String]) -> String {
     args.iter()
@@ -9,14 +9,14 @@ fn search_term(args: &[String]) -> String {
         .join("-")
 }
 
-pub fn list_notes(path: &PathBuf) -> io::Result<()> {
+pub fn list_notes(path: &Path) -> io::Result<()> {
     read_notes_dir(path)
         .iter()
         .for_each(|entry| println!("{}", entry.path().display()));
     Ok(())
 }
 
-pub fn search_notes(path: &PathBuf, args: &[String]) -> io::Result<()> {
+pub fn search_notes(path: &Path, args: &[String]) -> io::Result<()> {
     let search = search_term(args);
 
     read_notes_dir(path)
@@ -27,7 +27,7 @@ pub fn search_notes(path: &PathBuf, args: &[String]) -> io::Result<()> {
     Ok(())
 }
 
-pub fn print_notes(path: &PathBuf, args: &[String]) -> io::Result<()> {
+pub fn print_notes(path: &Path, args: &[String]) -> io::Result<()> {
     let search = search_term(args);
     read_notes_dir(path)
         .iter()
@@ -41,6 +41,6 @@ pub fn print_notes(path: &PathBuf, args: &[String]) -> io::Result<()> {
     Ok(())
 }
 
-fn read_notes_dir(path: &PathBuf) -> Vec<fs::DirEntry> {
+fn read_notes_dir(path: &Path) -> Vec<fs::DirEntry> {
     fs::read_dir(path).unwrap().map(|e| e.unwrap()).collect()
 }
