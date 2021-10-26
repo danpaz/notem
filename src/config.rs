@@ -47,12 +47,23 @@ fn choose_fallback_editor() -> Result<PathBuf, &'static str> {
 
 fn get_path() -> Result<PathBuf, &'static str> {
     match env::var_os("NOTEM_PATH") {
-        Some(val) => Ok(PathBuf::from(val)),
+        Some(val) => {
+            let path = PathBuf::from(val);
+            if path.is_dir() {
+                Ok(path)
+            } else {
+                Err("NOTEM_PATH is not a valid directory")
+            }
+        }
         None => {
             // Default path is ~/notes
             let mut path = dirs::home_dir().unwrap();
             path.push("notes");
-            Ok(path)
+            if path.is_dir() {
+                Ok(path)
+            } else {
+                Err("~/notes is not a valid directory")
+            }
         }
     }
 }
@@ -91,4 +102,12 @@ fn test_get_filename() {
             "this-is-a-subject"
         )
     );
+}
+
+#[test]
+fn test_get_path() {
+    let mut current_dir = env::current_dir().unwrap();
+    current_dir.push("src");
+    env::set_var("NOTEM_PATH", &current_dir);
+    assert_eq!(get_path(), Ok(current_dir));
 }
